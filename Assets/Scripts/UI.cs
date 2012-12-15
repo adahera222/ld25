@@ -23,9 +23,10 @@ public class UI : MonoBehaviour {
 		ins.selection.text = "Current Type: "+s;
 	}
 	
-	public static void SetShield( int pct ) {
-		ins.shield.text = pct.ToString() + "%";
-		ins.shield.renderer.material.color = new Color( 1f-((float)pct)/100f, ((float)pct)/100f, 0f, 1f );
+	public static void SetShield( int hp, int maxhp ) {
+		float pct = (float)hp / (float)maxhp;
+		ins.shield.text = ((int)100f*pct).ToString() + "%";
+		ins.shield.renderer.material.color = new Color( 1f-pct, pct, 0f, 1f );
 	}
 	
 	public static void SetNumPellets( int num ) {

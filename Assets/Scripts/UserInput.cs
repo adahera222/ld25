@@ -12,12 +12,18 @@ public class UserInput : MonoBehaviour {
 	
 	private EnemyTypes selection = EnemyTypes.BURSTER;
 	
+	private int numPellets = 0;
+	private int maxPellets = 40;
+	
 	void Start() {
 		unitHeight = Mathf.Abs( Camera.main.transform.position.z ) * Mathf.Tan( Camera.main.fov * Mathf.PI/180f );
 		unitWidth = unitHeight * Camera.main.aspect;
 		
 		left = unitWidth * -0.5f;
 		bottom = unitHeight * -0.5f;
+		
+		UI.SetNumPellets( numPellets = 0);
+		StartCoroutine( GeneratePellets() );
 		
 		Debug.Log( left+" "+bottom+"\n"+unitWidth+" "+unitHeight );
 	}
@@ -35,16 +41,30 @@ public class UserInput : MonoBehaviour {
 			Debug.Log( "input: "+Input.mousePosition );
 			switch( selection ) {
 			case EnemyTypes.BOMBER:
+				if( numPellets < 3 ) break;
+				numPellets -= 3;
 				Spawn<Bomber>( Input.mousePosition );
 				break;
 				
 			case EnemyTypes.BURSTER:
+				if( numPellets < 1 ) break;
+				numPellets -= 1;
 				Spawn<Burster>( Input.mousePosition );
 				break;
 				
 			default:
 				break;
 			}
+			
+			UI.SetNumPellets( numPellets );
+		}
+	}
+	
+	IEnumerator GeneratePellets() {
+		while( true ) {
+			numPellets += numPellets < maxPellets? 1 : 0;
+			UI.SetNumPellets( numPellets );
+			yield return new WaitForSeconds( 0.5f );
 		}
 	}
 	
