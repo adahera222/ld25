@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class Bullet : MonoBehaviour {
 	public static readonly float R2D = 180f/Mathf.PI;
+	public static readonly float D2R = Mathf.PI/180f;
+	
 	public void Initialise( Vector2 position, Vector2 velocity ) {
 		gameObject.SetActive( true );
 		rigidbody.velocity = velocity;

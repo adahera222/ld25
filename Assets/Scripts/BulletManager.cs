@@ -28,6 +28,12 @@ public class BulletManager : MonoBehaviour {
 		}
 	}
 	
+	public static void ClearBullets() {
+		foreach( Transform t in ins.bulletContainer ) {
+			ReturnBullet( t.GetComponent<Bullet>() );
+		}
+	}
+	
 	public static Bullet RequestBullet() {
 		if( ins.bullets.Count > 0 ) {
 			return ins.bullets.Dequeue();
