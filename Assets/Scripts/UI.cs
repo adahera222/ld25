@@ -9,6 +9,8 @@ public class UI : MonoBehaviour {
 	public TextMesh selection;
 	public TextMesh shield;
 	
+	public UIPelletGroup[] groups;
+	
 	void Awake() {
 		ins = this;
 	}
@@ -24,5 +26,12 @@ public class UI : MonoBehaviour {
 	public static void SetShield( int pct ) {
 		ins.shield.text = pct.ToString() + "%";
 		ins.shield.renderer.material.color = new Color( 1f-((float)pct)/100f, ((float)pct)/100f, 0f, 1f );
+	}
+	
+	public static void SetNumPellets( int num ) {
+		for( int a = 0 ; a < ins.groups.Length ; a++ ) {
+			ins.groups[a].SetNumActivePellets( Mathf.Min( 10, num ) );
+			num -= 10;
+		}
 	}
 }
