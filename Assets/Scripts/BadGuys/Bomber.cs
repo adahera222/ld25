@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 public class Bomber : BadGuyShip {
 	protected override int scoreValue { get { return 500; } }
+	protected override float lifetime { get { return 60f; } }
+	protected override float refireDelay { get { return 0f; } }
 	
 	public override void Initialise( Vector3 position ) {
 		StartCoroutine( Action( position ) );
 		
-		lifetime = 999f;
-		hp = 2;
-		refireDelay = 0f;
+		hp = 3;
 	}
 	
 	protected override void FireShot() {

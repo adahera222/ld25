@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 public class Burster : BadGuyShip {
 	protected override int scoreValue { get { return 100; } }
+	protected override float lifetime { get { return 3.5f; } }
+	protected override float refireDelay { get { return 1f; } }
 	
 	public override void Initialise( Vector3 position ) {
 		transform.position = position;
 		
-		refireDelay = 1f;
 		hp = 3;
-		lifetime = 3.5f;
 	}
 	
 	protected override void FireShot() {

@@ -7,14 +7,11 @@ public enum EnemyTypes {
 	BURSTER,
 }
 
-public abstract class BadGuyShip : MonoBehaviour {	
-	public float hp { get; protected set; }
-	
-	public float refireDelay = 0.2f;
-	
-	protected float lifetime;
-	
+public abstract class BadGuyShip : MonoBehaviour {
+	protected float hp { get; set; }
 	protected abstract int scoreValue { get; }
+	protected abstract float lifetime { get; }
+	protected abstract float refireDelay { get; }
 	
 	void Start() {
 		StartCoroutine( Decay() );
