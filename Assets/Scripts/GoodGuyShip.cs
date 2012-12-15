@@ -10,7 +10,7 @@ public class GoodGuyShip : MonoBehaviour {
 	
 	private float refireDelay = 0.05f;
 	
-	private float hp = 100;
+	private int hp = 100;
 	private int bombs = 3;
 	private int score = 0;
 	
@@ -22,8 +22,19 @@ public class GoodGuyShip : MonoBehaviour {
 	
 	void Start() {
 		UI.SetScore( score = 0 );
+		UI.SetShield( hp = 100 );
 		StartCoroutine( Fire() );
 		rigidbody.velocity = Vector3.right * 2f;
+	}
+	
+	void Reinitialise() {
+		BulletManager.ClearBullets();
+		StopAllCoroutines();
+		
+		UI.SetShield( hp = 100 );
+		transform.position = new Vector3( 0f, -5f );
+		
+		StartCoroutine( Fire() );
 	}
 	
 	IEnumerator Fire() {
@@ -60,5 +71,19 @@ public class GoodGuyShip : MonoBehaviour {
 	
 	public static void AddScore( int i ) {
 		UI.SetScore( ins.score += i );
+	}
+	
+	IEnumerator OnCollisionEnter( Collision c ) {
+		UI.SetShield( --hp );
+		
+		if( hp <= 0 ) {
+			Reinitialise();
+			yield break;
+		} else {
+			yield return new WaitForSeconds( 15f );
+			
+			UI.SetShield( ++hp );
+		}
+		
 	}
 }

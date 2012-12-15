@@ -7,6 +7,13 @@ public class Burster : BadGuyShip {
 	protected override float lifetime { get { return 3.5f; } }
 	protected override float refireDelay { get { return 1f; } }
 	
+	void Update() {
+		Vector3 v3 = transform.position - GoodGuyShip.Position;
+		float z = Mathf.Atan( v3.y/v3.x ) * Bullet.R2D;
+		if( z < 0f ) z += 180f;
+		transform.localEulerAngles = new Vector3( 0f, 0f, z );
+	}
+	
 	public override void Initialise( Vector3 position ) {
 		transform.position = position;
 		

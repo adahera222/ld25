@@ -14,10 +14,12 @@ public class UserInput : MonoBehaviour {
 	
 	void Start() {
 		unitHeight = Mathf.Abs( Camera.main.transform.position.z ) * Mathf.Tan( Camera.main.fov * Mathf.PI/180f );
-		unitWidth = unitHeight * 4f/3f;
+		unitWidth = unitHeight * Camera.main.aspect;
 		
 		left = unitWidth * -0.5f;
 		bottom = unitHeight * -0.5f;
+		
+		Debug.Log( left+" "+bottom+"\n"+unitWidth+" "+unitHeight );
 	}
 	
 	void Update() {
@@ -30,6 +32,7 @@ public class UserInput : MonoBehaviour {
 		}
 		
 		if( Input.GetMouseButtonDown( 0 ) ) {
+			Debug.Log( "input: "+Input.mousePosition );
 			switch( selection ) {
 			case EnemyTypes.BOMBER:
 				Spawn<Bomber>( Input.mousePosition );
