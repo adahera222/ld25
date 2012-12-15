@@ -10,7 +10,7 @@ public class Bomber : BadGuyShip {
 	public override void Initialise( Vector3 position ) {
 		StartCoroutine( Action( position ) );
 		
-		hp = 3;
+		hp = 5;
 	}
 	
 	protected override void FireShot() {
@@ -29,13 +29,13 @@ public class Bomber : BadGuyShip {
 		float sqrtHeight = Mathf.Sqrt( UserInput.unitHeight );
 		
 		bool payloadDelivered = false;
-		for( float t = -1f ; t < 1f ; t += Time.deltaTime ) {
+		for( float t = -1.5f ; t < 1f ; t += Time.deltaTime ) {
 			if( !payloadDelivered && t >= 0 ) {
 				payloadDelivered = true;
 				
-				for( int a = 0 ; a < 10 ; a++ ) {
+				for( int a = 0 ; a < 12 ; a++ ) {
 					Bullet b = BulletManager.RequestBullet();
-					b.Initialise( transform.position, Random.Range( 8f, 12f ) * new Vector2( Random.Range( -1f, 1f ), -2f ).normalized );
+					b.Initialise( transform.position, Random.Range( 12f, 16f ) * new Vector2( Random.Range( -1f, 1f ), -5f ).normalized );
 					b.gameObject.layer = gameObject.layer+1;
 				}
 			}

@@ -41,14 +41,14 @@ public class UserInput : MonoBehaviour {
 			Debug.Log( "input: "+Input.mousePosition );
 			switch( selection ) {
 			case EnemyTypes.BOMBER:
-				if( numPellets < 3 ) break;
-				numPellets -= 3;
+				if( numPellets < 10 ) break;
+				numPellets -= 10;
 				Spawn<Bomber>( Input.mousePosition );
 				break;
 				
 			case EnemyTypes.BURSTER:
-				if( numPellets < 1 ) break;
-				numPellets -= 1;
+				if( numPellets < 5 ) break;
+				numPellets -= 5;
 				Spawn<Burster>( Input.mousePosition );
 				break;
 				
@@ -64,7 +64,7 @@ public class UserInput : MonoBehaviour {
 		while( true ) {
 			numPellets += numPellets < maxPellets? 1 : 0;
 			UI.SetNumPellets( numPellets );
-			yield return new WaitForSeconds( 0.5f );
+			yield return new WaitForSeconds( 0.2f );
 		}
 	}
 	
