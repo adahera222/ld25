@@ -21,7 +21,7 @@ public class GoodGuyShip : MonoBehaviour {
 	}
 	
 	void Start() {
-		UI.SetScore( 0 );
+		UI.SetScore( score = 0 );
 		StartCoroutine( Fire() );
 		rigidbody.velocity = Vector3.right * 2f;
 	}
@@ -59,7 +59,6 @@ public class GoodGuyShip : MonoBehaviour {
 	}
 	
 	public static void AddScore( int i ) {
-		ins.score += i;
-		UI.SetScore( ins.score );
+		UI.SetScore( ins.score += i );
 	}
 }
