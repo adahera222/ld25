@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public enum EnemyTypes {
 	BOMBER,
 	BURSTER,
+	DUMMY,
 }
 
 public abstract class BadGuyShip : MonoBehaviour {

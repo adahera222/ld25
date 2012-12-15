@@ -35,6 +35,9 @@ public class UserInput : MonoBehaviour {
 		} else if( Input.GetKeyDown( KeyCode.Alpha2 ) ) {
 			selection = EnemyTypes.BOMBER;
 			UI.SetSelection( selection.ToString() );
+		} else if( Input.GetKeyDown( KeyCode.Alpha0 ) ) {
+			selection = EnemyTypes.DUMMY;
+			UI.SetSelection( selection.ToString() );
 		}
 		
 		if( Input.GetMouseButtonDown( 0 ) ) {
@@ -53,6 +56,7 @@ public class UserInput : MonoBehaviour {
 				break;
 				
 			default:
+				Spawn<Dummy>( Input.mousePosition );
 				break;
 			}
 			

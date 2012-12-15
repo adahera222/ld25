@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Burster : BadGuyShip {
 	protected override int scoreValue { get { return 100; } }
-	protected override float lifetime { get { return 5f; } }
+	protected override float lifetime { get { return 5.75f; } }
 	protected override float refireDelay { get { return 1f; } }
 	
 	void Update() {

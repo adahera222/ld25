@@ -13,8 +13,8 @@ public class BulletManager : MonoBehaviour {
 	void Awake() {
 		ins = this;
 		bullets = new Queue<Bullet>();
-		bulletContainer = new GameObject().transform;
-		bulletContainer.name = "BulletContainer";
+		bulletContainer = new GameObject( "BulletContainer" ).transform;
+		bulletContainer.transform.parent = transform;
 	}
 	
 	void Start() {
