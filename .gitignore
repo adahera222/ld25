@@ -1,0 +1,9 @@
+Library/*
+*.pidb
+*.csproj
+*.unityproj
+*.sln
+*.userprefs
+Temp/*
+Assets/Editor/Image Effects/*
+Assets/Standard Assets/*
