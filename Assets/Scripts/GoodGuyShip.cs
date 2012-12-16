@@ -19,7 +19,7 @@ public class GoodGuyShip : MonoBehaviour {
 		ins = this;
 	}
 	
-	void Start() {
+	IEnumerator Start() {
 		UI.SetNumLives( lives );
 		UI.SetScore( score = 0 );
 		UI.SetShield( hp = maxhp, maxhp );
@@ -27,6 +27,12 @@ public class GoodGuyShip : MonoBehaviour {
 		StartCoroutine( FireFan() );
 		StartCoroutine( ScoreTick() );
 		rigidbody.velocity = Vector3.right * 2f;
+		
+		while( maxhp < 100 ) {
+			yield return new WaitForSeconds( 30f );
+			maxhp++;
+			hp++;
+		}
 	}
 	
 	void Reinitialise() {

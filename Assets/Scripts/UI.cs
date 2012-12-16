@@ -41,7 +41,7 @@ public class UI : MonoBehaviour {
 	
 	public static void SetShield( int hp, int maxhp ) {
 		float pct = (float)hp / (float)maxhp;
-		ins.shield.text = ((int)100f*pct).ToString() + "%";
+		ins.shield.text = ((int)100f*pct).ToString( "0.0" ) + "%";
 		ins.shield.renderer.material.color = new Color( 1f-pct, pct, 0f, 1f );
 	}
 	

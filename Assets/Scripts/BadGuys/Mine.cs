@@ -57,6 +57,7 @@ public class Mine : BadGuyShip {
 		}
 		
 		Detonate();
+		AudioManager.Explosion();
 		Explosion.Play( transform.position );
 		Destroy( gameObject );
 	}
