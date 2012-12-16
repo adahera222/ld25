@@ -8,9 +8,9 @@ public class Burster : BadGuyShip {
 	protected override float refireDelay { get { return 1f; } }
 	
 	void Update() {
-		Vector3 v3 = transform.position - GoodGuyShip.Position;
-		float z = Mathf.Atan( v3.y/v3.x ) * Bullet.R2D;
-		if( z < 0f ) z += 180f;
+		Vector3 v3 = GoodGuyShip.Position - transform.position;// transform.position - GoodGuyShip.Position;
+		float z = Mathf.Atan( v3.y/v3.x ) * Bullet.R2D - 90f;
+		if( v3.x < 0f ) z += 180f;
 		transform.localEulerAngles = new Vector3( 0f, 0f, z );
 	}
 	

@@ -627,7 +627,7 @@ Transform:
   m_GameObject: {fileID: 100906055}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 50}
-  m_LocalScale: {x: 22, y: 14, z: 1}
+  m_LocalScale: {x: 21.5, y: 13.5, z: 1}
   m_Children: []
   m_Father: {fileID: 2142563992}
 --- !u!65 &100906058
@@ -6980,15 +6980,15 @@ ParticleSystemRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_RenderMode: 0
-  m_MaxParticleSize: .5
+  m_RenderMode: 1
+  m_MaxParticleSize: .25
   m_CameraVelocityScale: 0
-  m_VelocityScale: 0
-  m_LengthScale: 2
+  m_VelocityScale: .100000001
+  m_LengthScale: .5
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_SortMode: 0
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -7166,7 +7166,7 @@ ParticleSystem:
         rgba: 1090519039
       maxColor:
         serializedVersion: 2
-        rgba: 3238002624
+        rgba: 2164260800
       minMaxState: 2
     startSize:
       scalar: .25
@@ -9133,6 +9133,44 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1537390084}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1547700985
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1547700986}
+  - 114: {fileID: 1547700987}
+  m_Layer: 0
+  m_Name: '[DummySpawner]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1547700986
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1547700985}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!114 &1547700987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1547700985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1a95185b939bf4cbcba5b42cfd7250, type: 3}
+  m_Name: 
+  badGuyPrefab: {fileID: 100000, guid: 49699e298656ab245a62dd62e37ceaca, type: 2}
 --- !u!1 &1567888699
 GameObject:
   m_ObjectHideFlags: 0

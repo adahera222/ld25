@@ -8,7 +8,7 @@ public class GoodGuyShip : MonoBehaviour {
 	
 	public static Vector3 Position { get { return ins.transform.position; } }
 	
-	private float refireDelay = 0.05f;
+	private float refireDelay = 0.1f;
 	
 	private int hp = 50;
 	private int maxhp = 50;

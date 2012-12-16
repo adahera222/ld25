@@ -9,7 +9,7 @@ public class Dummy : BadGuyShip {
 	
 	public override void Initialise( Vector3 position ) {
 		StartCoroutine( Action() );
-		hp = 10;
+		hp = 2;
 	}
 	
 	protected override void FireShot() {
@@ -20,11 +20,13 @@ public class Dummy : BadGuyShip {
 	
 	
 	IEnumerator Action() {
-		transform.position = new Vector3( 0.25f*Random.Range( -UserInput.unitWidth, UserInput.unitWidth ), UserInput.bottom + UserInput.unitHeight*1.1f );
+		transform.position = new Vector3( 0.125f*Random.Range( -UserInput.unitWidth, UserInput.unitWidth ), UserInput.bottom + UserInput.unitHeight*1.1f );
 		
-		while( true ) {
+		while( transform.position.y > UserInput.bottom-1f ) {
 			transform.position += Vector3.down * Time.deltaTime;
 			yield return null;
 		}
+		
+		Destroy( gameObject );
 	}
 }
