@@ -51,6 +51,7 @@ public class UserInput : MonoBehaviour {
 		
 		UI.SetNumPellets( numPellets = 0);
 		StartCoroutine( GeneratePellets() );
+		StartCoroutine( IncreaseMaxPellets() );
 		
 		Debug.Log( left+" "+bottom+"\n"+unitWidth+" "+unitHeight );
 	}
@@ -116,6 +117,13 @@ public class UserInput : MonoBehaviour {
 			}
 			
 			UI.SetNumPellets( numPellets );
+		}
+	}
+	
+	IEnumerator IncreaseMaxPellets() {
+		while( maxPellets < 150 ) {
+			yield return new WaitForSeconds( 30f );
+			maxPellets += 10;
 		}
 	}
 	
