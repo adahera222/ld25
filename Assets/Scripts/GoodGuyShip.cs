@@ -40,10 +40,12 @@ public class GoodGuyShip : MonoBehaviour {
 		AudioManager.ToggleShotLoop( false );
 		StopCoroutine( "RegenerateShield" );
 		collider.enabled = false;
-		transform.Find( "Image" ).renderer.enabled = false;
 		BulletManager.ClearBullets();
 		transform.position = new Vector3( Centre, -5f );
 		rigidbody.velocity = Vector3.zero;
+		foreach( Transform t in transform ) {
+			t.renderer.enabled = false;
+		}
 		
 		if( lives == 0 ) {
 			gameObject.SetActive( false );
@@ -57,9 +59,11 @@ public class GoodGuyShip : MonoBehaviour {
 	void res() {
 		AudioManager.ToggleShotLoop( true );
 		collider.enabled = true;
-		transform.Find( "Image" ).renderer.enabled = true;
 		transform.position = new Vector3( Centre, -5f );
 		rigidbody.velocity = Vector3.right * 2f;
+		foreach( Transform t in transform ) {
+			t.renderer.enabled = true;
+		}
 		
 		UI.SetNumLives( --lives );
 		UI.SetShield( hp = maxhp, maxhp );
