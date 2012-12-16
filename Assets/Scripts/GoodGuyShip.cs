@@ -65,7 +65,7 @@ public class GoodGuyShip : MonoBehaviour {
 	}
 	
 	IEnumerator FireFan() {
-		while( score < 5000 ) yield return null;
+		while( score < 2000 ) yield return null;
 		
 		Vector2 d1a = new Vector2( -1f, 2f ).normalized * 20f;
 		Vector2 d1b = new Vector2(  1f, 2f ).normalized * 20f;
