@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class UserInput : MonoBehaviour {
 	public GameObject badGuyPrefab;
+	public ParticleSystem spawnParticle;
 	
 	public static float unitWidth { private set; get; }
 	public static float unitHeight { private set; get; }
@@ -49,7 +50,7 @@ public class UserInput : MonoBehaviour {
 			case EnemyTypes.BURSTER:
 				if( numPellets < 5 ) break;
 				numPellets -= 5;
-				Spawn<Burster>( Input.mousePosition );
+				Spawn<Burster>( Input.mousePosition, true );
 				break;
 				
 			default:
@@ -68,11 +69,17 @@ public class UserInput : MonoBehaviour {
 		}
 	}
 	
-	void Spawn<T>( Vector3 position ) where T : BadGuyShip {
+	void Spawn<T>( Vector3 position, bool particles = false ) where T : BadGuyShip {
 		GameObject g = (GameObject)Instantiate( badGuyPrefab ) as GameObject;
 		Vector3 viewport = Camera.main.ScreenToViewportPoint( position );
+		Vector3 location = new Vector3( left + viewport.x * unitWidth, bottom + viewport.y * unitHeight );
 		
 		BadGuyShip b = g.AddComponent<T>();
-		b.Initialise( new Vector3( left + viewport.x * unitWidth, bottom + viewport.y * unitHeight ) );
+		b.Initialise( location );
+		
+		if( particles ) {
+			spawnParticle.transform.position = location;
+			spawnParticle.Play( true );
+		}
 	}
 }
