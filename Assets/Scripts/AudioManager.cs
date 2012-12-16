@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour {
 	
 	public AudioClip explosion;
 	public AudioClip warp;
+	public AudioSource shotloop;
 		
 	void Awake() {
 		ins = this;
@@ -30,6 +31,10 @@ public class AudioManager : MonoBehaviour {
 		
 		channels[channel].clip = clip;
 		channels[channel].Play();
+	}
+	
+	public static void ToggleShotLoop( bool tf ) {
+		ins.shotloop.enabled = tf;
 	}
 	
 	public static void Play( AudioClip clip ) {

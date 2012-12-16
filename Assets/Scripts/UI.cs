@@ -10,6 +10,7 @@ public class UI : MonoBehaviour {
 	public TextMesh score;
 	public TextMesh selection;
 	public TextMesh shield;
+	public Renderer insertCoin;
 	
 	public UIPelletGroup[] groups;
 	
@@ -18,6 +19,18 @@ public class UI : MonoBehaviour {
 	void Awake() {
 		ins = this;
 		tiles = GetComponentsInChildren<UITile>( false );
+		insertCoin.enabled = false;
+	}
+	
+	public static void GameOver() {
+		ins.StartCoroutine( ins._GameOver() );
+	}
+	
+	IEnumerator _GameOver() {
+		while( true ) {
+			insertCoin.enabled = !insertCoin.enabled;
+			yield return new WaitForSeconds( 1f );
+		}
 	}
 	
 	public static void MouseInput( Vector2 mousePos ) {

@@ -7702,6 +7702,7 @@ MonoBehaviour:
   m_Name: 
   explosion: {fileID: 8300000, guid: fa4a8fc93dd81c345b602f06a1b7237a, type: 3}
   warp: {fileID: 8300000, guid: 1852ede2e8639e749b4fdf4ec0e81ca8, type: 3}
+  shotloop: {fileID: 1787856332}
 --- !u!1 &928862865
 GameObject:
   m_ObjectHideFlags: 0
@@ -9928,6 +9929,70 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1095265710}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1104186490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1104186491}
+  - 102: {fileID: 1104186493}
+  - 23: {fileID: 1104186492}
+  m_Layer: 30
+  m_Name: InsertCoin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1104186491
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1104186490}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12, y: 1, z: 50}
+  m_LocalScale: {x: .375, y: .375, z: .375}
+  m_Children: []
+  m_Father: {fileID: 1323100146}
+--- !u!23 &1104186492
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1104186490}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 868d90484d93c16429931d06f2bc7e36, type: 3}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+--- !u!102 &1104186493
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1104186490}
+  m_Text: INSERT COIN
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 0
+  m_Alignment: 0
+  m_TabSize: 4
+  m_FontSize: 64
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 12800000, guid: 868d90484d93c16429931d06f2bc7e36, type: 3}
 --- !u!1 &1112790912
 GameObject:
   m_ObjectHideFlags: 0
@@ -12389,6 +12454,7 @@ Transform:
   - {fileID: 991626489}
   - {fileID: 1166766275}
   - {fileID: 1664536655}
+  - {fileID: 1104186491}
   - {fileID: 500488443}
   m_Father: {fileID: 1711353466}
 --- !u!1 &1337443539
@@ -15332,6 +15398,7 @@ MonoBehaviour:
   score: {fileID: 1664536654}
   selection: {fileID: 1132315081}
   shield: {fileID: 670086212}
+  insertCoin: {fileID: 1104186492}
   groups:
   - {fileID: 1468315104}
   - {fileID: 542856520}
