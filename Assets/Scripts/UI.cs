@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class UI : MonoBehaviour {
 	private static UI ins;
 	
+	public TextMesh lives;
 	public TextMesh score;
 	public TextMesh selection;
 	public TextMesh shield;
@@ -34,5 +35,9 @@ public class UI : MonoBehaviour {
 			ins.groups[a].SetNumActivePellets( Mathf.Min( 10, num ) );
 			num -= 10;
 		}
+	}
+	
+	public static void SetNumLives( int i ) {
+		ins.lives.text = "Lives:     x"+i.ToString();
 	}
 }

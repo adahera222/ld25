@@ -29,7 +29,7 @@ public class Bomber : BadGuyShip {
 		float sqrtHeight = Mathf.Sqrt( UserInput.unitHeight );
 		
 		bool payloadDelivered = false;
-		for( float t = -1.5f ; t < 1f ; t += Time.deltaTime ) {
+		for( float t = -1f ; t < 1f ; t += Time.deltaTime/2f ) {
 			if( !payloadDelivered && t >= 0 ) {
 				payloadDelivered = true;
 				

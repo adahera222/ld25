@@ -12,6 +12,7 @@ public class UserInput : MonoBehaviour {
 	public static float bottom { private set; get; }
 	
 	public GameObject
+		barrierPrefab,
 		bursterPrefab,
 		bomberPrefab;
 	
@@ -40,22 +41,29 @@ public class UserInput : MonoBehaviour {
 		} else if( Input.GetKeyDown( KeyCode.Alpha2 ) ) {
 			selection = EnemyTypes.BOMBER;
 			UI.SetSelection( selection.ToString() );
+		} else if( Input.GetKeyDown( KeyCode.Alpha3 ) ) {
+			selection = EnemyTypes.BARRIER;
+			UI.SetSelection( selection.ToString() );
 		}
 		
 		if( Input.GetMouseButtonDown( 0 ) ) {
 			Debug.Log( "input: "+Input.mousePosition );
 			switch( selection ) {
+			case EnemyTypes.BARRIER:
+				if( numPellets < 5 ) break;
+				numPellets -= 5;
+				Spawn( barrierPrefab, Input.mousePosition, true );
+				break;
+				
 			case EnemyTypes.BOMBER:
 				if( numPellets < 10 ) break;
 				numPellets -= 10;
-//				Spawn<Bomber>( Input.mousePosition );
 				Spawn( bomberPrefab, Input.mousePosition );
 				break;
 				
 			case EnemyTypes.BURSTER:
 				if( numPellets < 5 ) break;
 				numPellets -= 5;
-//				Spawn<Burster>( Input.mousePosition, true );
 				Spawn( bursterPrefab, Input.mousePosition, true );
 				break;
 				

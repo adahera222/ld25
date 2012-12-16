@@ -10,6 +10,7 @@ public class Dummy : BadGuyShip {
 	public override void Initialise( Vector3 position ) {
 		StartCoroutine( Action() );
 		StartCoroutine( Rotate() );
+		
 		hp = 2;
 	}
 	

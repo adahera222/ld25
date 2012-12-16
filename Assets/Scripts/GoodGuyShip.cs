@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class GoodGuyShip : MonoBehaviour {
 	private static GoodGuyShip ins;
-	private delegate void FireUpgrade();
 	
 	public static Vector3 Position { get { return ins.transform.position; } }
 	
@@ -13,18 +12,19 @@ public class GoodGuyShip : MonoBehaviour {
 	private int hp = 50;
 	private int maxhp = 50;
 	private int bombs = 3;
+	private int lives = 3;
 	private int score = 0;
-	
-	private event FireUpgrade fireUpgrade;
 	
 	void Awake() {
 		ins = this;
 	}
 	
 	void Start() {
+		UI.SetNumLives( lives );
 		UI.SetScore( score = 0 );
 		UI.SetShield( hp = maxhp, maxhp );
 		StartCoroutine( Fire() );
+		StartCoroutine( FireFan() );
 		StartCoroutine( ScoreTick() );
 		rigidbody.velocity = Vector3.right * 2f;
 	}
@@ -33,15 +33,24 @@ public class GoodGuyShip : MonoBehaviour {
 		BulletManager.ClearBullets();
 		StopAllCoroutines();
 		
+		if( lives == 0 ) {
+			
+			return;
+		}
+		
+		UI.SetNumLives( --lives );
 		UI.SetShield( hp = maxhp, maxhp );
 		transform.position = new Vector3( 0f, -5f );
 		
 		StartCoroutine( Fire() );
+		StartCoroutine( FireFan () );
 		StartCoroutine( ScoreTick() );
 	}
 	
+	#region attacks
 	IEnumerator Fire() {
 		float f = 0f;
+		Vector2 dir = new Vector2( 0f, 20f );
 		
 		while( true ) {
 			while( f < refireDelay ) {
@@ -49,15 +58,43 @@ public class GoodGuyShip : MonoBehaviour {
 				yield return null;
 			}
 			
-			SpawnBullet();
+			SpawnBullet().Initialise( transform.position, dir );
 			f = 0f;
 		}
 	}
 	
-	void SpawnBullet() {
+	IEnumerator FireFan() {
+		while( score < 2500 ) yield return null;
+		
+		Vector2 d1a = new Vector2( -1f, 2f ).normalized * 20f;
+		Vector2 d1b = new Vector2(  1f, 2f ).normalized * 20f;
+		
+		Vector2 d2a = new Vector2( -1f, 4f ).normalized * 20f;
+		Vector2 d2b = new Vector2(  1f, 4f ).normalized * 20f;
+		
+		bool flag = true;
+		
+		float f = 0f;
+		while( true ) {
+			while( f < refireDelay*2f ) {
+				f += Time.deltaTime;
+				yield return null;
+			}
+			
+			SpawnBullet().Initialise( transform.position, flag? d1a : d2a );
+			SpawnBullet().Initialise( transform.position, flag? d1b : d2b );
+			
+			flag = !flag;
+			f = 0f;
+		}
+	}
+	#endregion
+	
+	Bullet SpawnBullet() {
 		Bullet b = BulletManager.RequestBullet();
-		b.Initialise( transform.position, Vector3.up * 20f );
 		b.gameObject.layer = gameObject.layer+1;
+		
+		return b;
 	}
 	
 	IEnumerator OnTriggerExit( Collider c ) {

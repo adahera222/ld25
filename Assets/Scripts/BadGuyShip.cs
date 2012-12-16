@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public enum EnemyTypes {
+	BARRIER,
 	BOMBER,
 	BURSTER,
 	DUMMY,
