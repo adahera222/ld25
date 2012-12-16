@@ -6,12 +6,12 @@ public class GoodGuyShip : MonoBehaviour {
 	private static GoodGuyShip ins;
 	
 	public static Vector3 Position { get { return ins.transform.position; } }
+	public static float Centre { get { return -3.5f; } }
 	
 	private float refireDelay = 0.1f;
 	
 	private int hp = 50;
 	private int maxhp = 50;
-	private int bombs = 3;
 	private int lives = 3;
 	private int score = 0;
 	
@@ -40,7 +40,7 @@ public class GoodGuyShip : MonoBehaviour {
 		
 		UI.SetNumLives( --lives );
 		UI.SetShield( hp = maxhp, maxhp );
-		transform.position = new Vector3( 0f, -5f );
+		transform.position = new Vector3( Centre, -5f );
 		
 		StartCoroutine( Fire() );
 		StartCoroutine( FireFan () );
@@ -64,7 +64,7 @@ public class GoodGuyShip : MonoBehaviour {
 	}
 	
 	IEnumerator FireFan() {
-		while( score < 2500 ) yield return null;
+		while( score < 5000 ) yield return null;
 		
 		Vector2 d1a = new Vector2( -1f, 2f ).normalized * 20f;
 		Vector2 d1b = new Vector2(  1f, 2f ).normalized * 20f;
@@ -101,7 +101,7 @@ public class GoodGuyShip : MonoBehaviour {
 		yield return null;
 		
 		if( c.name == "GoodGuyTrigger" ) {
-			float f = Random.value * 3f;
+			float f = Random.value * 2.5f;
 			yield return new WaitForSeconds( f );
 			Vector3 v3 = rigidbody.velocity;
 			v3.x = -v3.x;

@@ -12,16 +12,26 @@ public class UI : MonoBehaviour {
 	
 	public UIPelletGroup[] groups;
 	
+	private UITile[] tiles;
+	
 	void Awake() {
 		ins = this;
+		tiles = GetComponentsInChildren<UITile>( false );
+	}
+	
+	public static void MouseInput( Vector2 mousePos ) {
+		
 	}
 	
 	public static void SetScore( int i ) {
 		ins.score.text = "Score: "+i.ToString();
 	}
 	
-	public static void SetSelection( string s ) {
-		ins.selection.text = "Current Type: "+s;
+	public static void SetSelection( EnemyTypes type ) {
+		ins.selection.text = "Current Type: "+type.ToString();
+		foreach( UITile tile in ins.tiles ) {
+			tile.SetActive( type );
+		}
 	}
 	
 	public static void SetShield( int hp, int maxhp ) {

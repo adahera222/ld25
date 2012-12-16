@@ -22,7 +22,7 @@ public class Dummy : BadGuyShip {
 	
 	
 	IEnumerator Action() {
-		transform.position = new Vector3( 0.125f*Random.Range( -UserInput.unitWidth, UserInput.unitWidth ), UserInput.bottom + UserInput.unitHeight*1.1f );
+		transform.position = new Vector3( GoodGuyShip.Centre + Random.Range( -5f, 5f ), UserInput.bottom + UserInput.unitHeight*1.1f );
 		
 		while( transform.position.y > UserInput.bottom-1f ) {
 			transform.position += Vector3.down * Time.deltaTime;

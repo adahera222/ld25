@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class UserInput : MonoBehaviour {
 	public GameObject badGuyPrefab;
 	public ParticleSystem spawnParticle;
+	public Camera uiCamera;
 	
 	public static float unitWidth { private set; get; }
 	public static float unitHeight { private set; get; }
@@ -22,6 +23,8 @@ public class UserInput : MonoBehaviour {
 	private int maxPellets = 40;
 	
 	void Start() {
+		UI.SetSelection( selection );
+		
 		unitHeight = Mathf.Abs( Camera.main.transform.position.z ) * Mathf.Tan( Camera.main.fov * Mathf.PI/180f );
 		unitWidth = unitHeight * Camera.main.aspect;
 		
@@ -35,19 +38,25 @@ public class UserInput : MonoBehaviour {
 	}
 	
 	void Update() {
-		if( Input.GetKeyDown( KeyCode.Alpha1 ) ) {
+		if( Input.GetKeyDown( KeyCode.Alpha2 ) ) {
 			selection = EnemyTypes.BURSTER;
-			UI.SetSelection( selection.ToString() );
-		} else if( Input.GetKeyDown( KeyCode.Alpha2 ) ) {
-			selection = EnemyTypes.BOMBER;
-			UI.SetSelection( selection.ToString() );
+			UI.SetSelection( selection );
 		} else if( Input.GetKeyDown( KeyCode.Alpha3 ) ) {
+			selection = EnemyTypes.BOMBER;
+			UI.SetSelection( selection );
+		} else if( Input.GetKeyDown( KeyCode.Alpha1 ) ) {
 			selection = EnemyTypes.BARRIER;
-			UI.SetSelection( selection.ToString() );
+			UI.SetSelection( selection );
 		}
 		
 		if( Input.GetMouseButtonDown( 0 ) ) {
-			Debug.Log( "input: "+Input.mousePosition );
+			Debug.Log( "input: "+Input.mousePosition+"\n"+(Input.mousePosition.x/Screen.width)+" "+(Input.mousePosition.y/Screen.height) );
+			
+			UI.MouseInput( Input.mousePosition );
+			
+			if( Input.mousePosition.x / Screen.width > 0.65f ) return;
+			if( Input.mousePosition.y / Screen.height < 0.25f ) return;
+			
 			switch( selection ) {
 			case EnemyTypes.BARRIER:
 				if( numPellets < 5 ) break;
