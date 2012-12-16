@@ -24,7 +24,6 @@ public class UI : MonoBehaviour {
 		Ray r = ins.uiCamera.ScreenPointToRay( mousePos );
 		RaycastHit info;
 		if( Physics.Raycast( r, out info, float.PositiveInfinity, 1 << 30 ) ) {
-			print ( info.collider.name );
 			info.collider.SendMessage( "Select" );
 		}
 	}

@@ -15,7 +15,8 @@ public class UserInput : MonoBehaviour {
 	public GameObject
 		barrierPrefab,
 		bursterPrefab,
-		bomberPrefab;
+		bomberPrefab,
+		spinnerPrefab;
 	
 	private EnemyTypes selection = EnemyTypes.BURSTER;
 	
@@ -24,6 +25,15 @@ public class UserInput : MonoBehaviour {
 	
 	public static void SetSelection( EnemyTypes type ) {
 		ins.Select( type );
+	}
+	
+	public static void AddPellets( int num ) {
+		ins.numPellets = Mathf.Min( ins.maxPellets, ins.numPellets+num );
+	}
+	
+	public static void PlaySpawnParticle( Vector3 position ) {
+		ins.spawnParticle.transform.position = position;
+		ins.spawnParticle.Play( true );
 	}
 	
 	void Awake() {
@@ -52,10 +62,24 @@ public class UserInput : MonoBehaviour {
 			Select( EnemyTypes.BURSTER );
 		} else if( Input.GetKeyDown( KeyCode.Alpha3 ) ) {
 			Select( EnemyTypes.BOMBER );
+		} else if( Input.GetKeyDown( KeyCode.Alpha4 ) ) {
+			Select( EnemyTypes.SPINNER );
+		} else if( Input.GetKeyDown( KeyCode.Alpha5 ) ) {
+//			Select( EnemyTypes.BOMBER );
+		} else if( Input.GetKeyDown( KeyCode.Alpha6 ) ) {
+//			Select( EnemyTypes.BOMBER );
+		} else if( Input.GetKeyDown( KeyCode.Alpha7 ) ) {
+//			Select( EnemyTypes.BOMBER );
+		} else if( Input.GetKeyDown( KeyCode.Alpha8 ) ) {
+//			Select( EnemyTypes.BOMBER );
+		} else if( Input.GetKeyDown( KeyCode.Alpha9 ) ) {
+//			Select( EnemyTypes.BOMBER );
+		} else if( Input.GetKeyDown( KeyCode.Alpha0 ) ) {
+//			Select( EnemyTypes.BOMBER );
 		}
 		
 		if( Input.GetMouseButtonDown( 0 ) ) {
-			Debug.Log( "input: "+Input.mousePosition+"\n"+(Input.mousePosition.x/Screen.width)+" "+(Input.mousePosition.y/Screen.height) );
+//			Debug.Log( "input: "+Input.mousePosition+"\n"+(Input.mousePosition.x/Screen.width)+" "+(Input.mousePosition.y/Screen.height) );
 			
 			UI.MouseInput( Input.mousePosition );
 			
@@ -79,6 +103,12 @@ public class UserInput : MonoBehaviour {
 				if( numPellets < 5 ) break;
 				numPellets -= 5;
 				Spawn( bursterPrefab, Input.mousePosition, true );
+				break;
+				
+			case EnemyTypes.SPINNER:
+				if( numPellets < 15 ) break;
+				numPellets -= 15;
+				Spawn( spinnerPrefab, Input.mousePosition, true );
 				break;
 				
 			default:

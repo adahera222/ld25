@@ -18,7 +18,7 @@ public class BulletManager : MonoBehaviour {
 	}
 	
 	void Start() {
-		for( int a = 0 ; a < 50 ; a++ ) {
+		for( int a = 0 ; a < 250 ; a++ ) {
 			GameObject go = (GameObject)Instantiate( ins.bulletPrefab );
 			Bullet b = go.GetComponent<Bullet>();
 			b.transform.parent = bulletContainer;

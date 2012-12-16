@@ -10,6 +10,7 @@ public class Bomber : BadGuyShip {
 	public override void Initialise( Vector3 position ) {
 		StartCoroutine( Action( position ) );
 		
+		refund = 4;
 		hp = 5;
 	}
 	

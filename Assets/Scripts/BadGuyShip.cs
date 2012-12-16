@@ -7,9 +7,11 @@ public enum EnemyTypes {
 	BOMBER,
 	BURSTER,
 	DUMMY,
+	SPINNER,
 }
 
 public abstract class BadGuyShip : MonoBehaviour {
+	protected int refund { get; set; }
 	protected float hp { get; set; }
 	protected abstract int scoreValue { get; }
 	protected abstract float lifetime { get; }
@@ -39,7 +41,7 @@ public abstract class BadGuyShip : MonoBehaviour {
 	
 	IEnumerator Decay() {
 		yield return new WaitForSeconds( lifetime );
-		Destroy( gameObject );
+		GracefulExit();
 	}
 	
 	protected virtual void OnCollisionEnter( Collision c ) {
@@ -47,6 +49,12 @@ public abstract class BadGuyShip : MonoBehaviour {
 			Destroy( gameObject );
 			GoodGuyShip.AddScore( scoreValue );
 		}
+	}
+	
+	protected void GracefulExit() {
+		UserInput.AddPellets( refund );
+		UserInput.PlaySpawnParticle( transform.position );
+		Destroy( gameObject );
 	}
 	
 	public abstract void Initialise( Vector3 position );
