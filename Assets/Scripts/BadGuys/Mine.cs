@@ -6,9 +6,6 @@ public class Mine : BadGuyShip {
 	protected override int scoreValue { get { return 150; } }
 	protected override float lifetime { get { return 30f; } }
 	protected override float refireDelay { get { return 0f; } }
-	
-	private float burstLength = 5;
-	private float burstCount = 0;
 		
 	public override void Initialise( Vector3 position ) {
 		transform.position = position;
