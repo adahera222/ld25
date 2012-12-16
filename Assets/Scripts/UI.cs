@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class UI : MonoBehaviour {
 	private static UI ins;
 	
+	public Camera uiCamera;
 	public TextMesh lives;
 	public TextMesh score;
 	public TextMesh selection;
@@ -20,7 +21,12 @@ public class UI : MonoBehaviour {
 	}
 	
 	public static void MouseInput( Vector2 mousePos ) {
-		
+		Ray r = ins.uiCamera.ScreenPointToRay( mousePos );
+		RaycastHit info;
+		if( Physics.Raycast( r, out info, float.PositiveInfinity, 1 << 30 ) ) {
+			print ( info.collider.name );
+			info.collider.SendMessage( "Select" );
+		}
 	}
 	
 	public static void SetScore( int i ) {

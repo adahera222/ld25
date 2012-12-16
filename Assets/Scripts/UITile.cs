@@ -11,22 +11,15 @@ public class UITile : MonoBehaviour {
 	
 	void Awake() {
 		tile = transform.Find( "Image-Tile" ).renderer;
-		tile.gameObject.AddComponent<UITileClickListener>().SetType( enemyType );
+		BoxCollider bc = gameObject.AddComponent<BoxCollider>();
+		bc.size = new Vector3( 3f, 3f, 1f );
+	}
+	
+	void Select() {
+		UserInput.SetSelection( enemyType );
 	}
 	
 	public void SetActive( EnemyTypes type ) {
 		tile.material.color = type == enemyType? on : off;
-	}
-}
-
-	
-class UITileClickListener : MonoBehaviour {
-	private EnemyTypes enemyType;
-	public void SetType( EnemyTypes type ) {
-		enemyType = type;
-	}
-	
-	void OnMouseUpAsButton() {
-		UI.SetSelection( enemyType );
 	}
 }

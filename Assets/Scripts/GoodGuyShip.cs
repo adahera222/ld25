@@ -30,17 +30,18 @@ public class GoodGuyShip : MonoBehaviour {
 	}
 	
 	void Reinitialise() {
+		transform.position = new Vector3( Centre, -5f );
 		BulletManager.ClearBullets();
 		StopAllCoroutines();
 		
 		if( lives == 0 ) {
-			
+			rigidbody.velocity = Vector3.zero;
+			gameObject.SetActive( false );
 			return;
 		}
 		
 		UI.SetNumLives( --lives );
 		UI.SetShield( hp = maxhp, maxhp );
-		transform.position = new Vector3( Centre, -5f );
 		
 		StartCoroutine( Fire() );
 		StartCoroutine( FireFan () );

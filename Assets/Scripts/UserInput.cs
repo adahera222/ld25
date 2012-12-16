@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class UserInput : MonoBehaviour {
+	private static UserInput ins;
 	public GameObject badGuyPrefab;
 	public ParticleSystem spawnParticle;
-	public Camera uiCamera;
 	
 	public static float unitWidth { private set; get; }
 	public static float unitHeight { private set; get; }
@@ -21,6 +21,14 @@ public class UserInput : MonoBehaviour {
 	
 	private int numPellets = 0;
 	private int maxPellets = 40;
+	
+	public static void SetSelection( EnemyTypes type ) {
+		ins.Select( type );
+	}
+	
+	void Awake() {
+		ins = this;
+	}
 	
 	void Start() {
 		UI.SetSelection( selection );
@@ -38,15 +46,12 @@ public class UserInput : MonoBehaviour {
 	}
 	
 	void Update() {
-		if( Input.GetKeyDown( KeyCode.Alpha2 ) ) {
-			selection = EnemyTypes.BURSTER;
-			UI.SetSelection( selection );
+		if( Input.GetKeyDown( KeyCode.Alpha1 ) ) {
+			Select( EnemyTypes.BARRIER );
+		} else if( Input.GetKeyDown( KeyCode.Alpha2 ) ) {
+			Select( EnemyTypes.BURSTER );
 		} else if( Input.GetKeyDown( KeyCode.Alpha3 ) ) {
-			selection = EnemyTypes.BOMBER;
-			UI.SetSelection( selection );
-		} else if( Input.GetKeyDown( KeyCode.Alpha1 ) ) {
-			selection = EnemyTypes.BARRIER;
-			UI.SetSelection( selection );
+			Select( EnemyTypes.BOMBER );
 		}
 		
 		if( Input.GetMouseButtonDown( 0 ) ) {
@@ -82,6 +87,11 @@ public class UserInput : MonoBehaviour {
 			
 			UI.SetNumPellets( numPellets );
 		}
+	}
+	
+	void Select( EnemyTypes type ) {
+		selection = type;
+		UI.SetSelection( selection );
 	}
 	
 	IEnumerator GeneratePellets() {
