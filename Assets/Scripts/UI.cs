@@ -33,7 +33,7 @@ public class UI : MonoBehaviour {
 	}
 	
 	public static void SetSelection( EnemyTypes type ) {
-		ins.selection.text = "Current Type: "+type.ToString();
+		ins.selection.text = type.ToString();
 		foreach( UITile tile in ins.tiles ) {
 			tile.SetActive( type );
 		}

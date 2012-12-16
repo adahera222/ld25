@@ -11,7 +11,7 @@ public class Spinner : BadGuyShip {
 		transform.position = position;
 		StartCoroutine( Action() );
 		
-		refund = 15;
+		refund = 7;
 		hp = 25;
 	}
 	
