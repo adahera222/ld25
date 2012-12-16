@@ -1046,7 +1046,7 @@ GameObject:
   - 4: {fileID: 113224075}
   - 114: {fileID: 113224076}
   m_Layer: 30
-  m_Name: 6
+  m_Name: 6-Mine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1077,7 +1077,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 281c23f37decd3b498aed8aef519a8f4, type: 3}
   m_Name: 
-  enemyType: 1
+  enemyType: 4
 --- !u!1 &126935770
 GameObject:
   m_ObjectHideFlags: 0
@@ -4371,7 +4371,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 281c23f37decd3b498aed8aef519a8f4, type: 3}
   m_Name: 
-  enemyType: 4
+  enemyType: 5
 --- !u!1 &441003044
 GameObject:
   m_ObjectHideFlags: 0
@@ -6545,6 +6545,7 @@ MonoBehaviour:
   barrierPrefab: {fileID: 100000, guid: fda117e737b1e0a4a93942fbf4c0dd19, type: 2}
   bursterPrefab: {fileID: 100000, guid: e7521d901e07f62459dddea0eaf3d5db, type: 2}
   bomberPrefab: {fileID: 100000, guid: 0b5e44dbee77e624299da99a49b25071, type: 2}
+  minePrefab: {fileID: 100000, guid: fc0be0314b671e544ba7c33fb2617b11, type: 2}
   spinnerPrefab: {fileID: 100000, guid: 7a10222e7c160de4caca07b48d916b8d, type: 2}
   trackerPrefab: {fileID: 100000, guid: 2e6b00c96f045fc4390ee8e85205146b, type: 2}
 --- !u!114 &708677255
@@ -7426,7 +7427,7 @@ GameObject:
   - 33: {fileID: 893283235}
   - 23: {fileID: 893283234}
   m_Layer: 30
-  m_Name: Image-Bomber
+  m_Name: Image-Mine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7455,7 +7456,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: e33fc548e39455647b95eb527967202e, type: 2}
+  - {fileID: 2100000, guid: 7ee65882ec5f3c4408363cb8f50f0cbb, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -12084,7 +12085,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1250005893}
-  m_Text: x1
+  m_Text: x2
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -12242,7 +12243,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 281c23f37decd3b498aed8aef519a8f4, type: 3}
   m_Name: 
-  enemyType: 5
+  enemyType: 6
 --- !u!1 &1323100145
 GameObject:
   m_ObjectHideFlags: 0

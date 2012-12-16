@@ -16,6 +16,7 @@ public class UserInput : MonoBehaviour {
 		barrierPrefab,
 		bursterPrefab,
 		bomberPrefab,
+		minePrefab,
 		spinnerPrefab,
 		trackerPrefab;
 	
@@ -69,7 +70,7 @@ public class UserInput : MonoBehaviour {
 		} else if( Input.GetKeyDown( KeyCode.Alpha5 ) ) {
 			Select( EnemyTypes.TRACKER );
 		} else if( Input.GetKeyDown( KeyCode.Alpha6 ) ) {
-//			Select( EnemyTypes.BOMBER );
+			Select( EnemyTypes.MINE );
 		} else if( Input.GetKeyDown( KeyCode.Alpha7 ) ) {
 //			Select( EnemyTypes.BOMBER );
 		} else if( Input.GetKeyDown( KeyCode.Alpha8 ) ) {
@@ -119,6 +120,13 @@ public class UserInput : MonoBehaviour {
 				Spawn( trackerPrefab, Input.mousePosition, true );
 				break;
 				
+			case EnemyTypes.MINE:
+				if( numPellets < 10 ) break;
+				numPellets -= 10;
+				Spawn( minePrefab, Input.mousePosition, true );
+				break;
+				
+				
 			default:
 				break;
 			}
@@ -153,20 +161,6 @@ public class UserInput : MonoBehaviour {
 		Vector3 location = new Vector3( left + viewport.x * unitWidth, bottom + viewport.y * unitHeight );
 		
 		BadGuyShip b = g.GetComponent<BadGuyShip>();
-		b.Initialise( location );
-		
-		if( particles ) {
-			spawnParticle.transform.position = location;
-			spawnParticle.Play( true );
-		}
-	}
-	
-	void Spawn<T>( Vector3 position, bool particles = false ) where T : BadGuyShip {
-		GameObject g = (GameObject)Instantiate( badGuyPrefab ) as GameObject;
-		Vector3 viewport = Camera.main.ScreenToViewportPoint( position );
-		Vector3 location = new Vector3( left + viewport.x * unitWidth, bottom + viewport.y * unitHeight );
-		
-		BadGuyShip b = g.AddComponent<T>();
 		b.Initialise( location );
 		
 		if( particles ) {

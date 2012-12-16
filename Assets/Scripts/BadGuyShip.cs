@@ -7,6 +7,7 @@ public enum EnemyTypes {
 	BOMBER,
 	BURSTER,
 	DUMMY,
+	MINE,
 	SPINNER,
 	TRACKER,
 }
