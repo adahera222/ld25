@@ -118,6 +118,7 @@ public class GoodGuyShip : MonoBehaviour {
 		UI.SetShield( --hp, maxhp );
 		
 		if( hp <= 0 ) {
+			AudioManager.Explosion();
 			Explosion.Play( transform.position );
 			Reinitialise();
 			yield break;

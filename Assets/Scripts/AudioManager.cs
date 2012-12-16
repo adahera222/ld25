@@ -8,8 +8,9 @@ public class AudioManager : MonoBehaviour {
 	private AudioSource[] channels;
 	private int channel = 0;
 	
+	public AudioClip explosion;
 	public AudioClip warp;
-	
+		
 	void Awake() {
 		ins = this;
 		
@@ -33,6 +34,10 @@ public class AudioManager : MonoBehaviour {
 	
 	public static void Play( AudioClip clip ) {
 		ins._Play( clip );
+	}
+	
+	public static void Explosion() {
+		ins._Play( ins.explosion );
 	}
 	
 	public static void Warp() {
