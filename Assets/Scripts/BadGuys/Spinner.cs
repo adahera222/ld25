@@ -42,7 +42,7 @@ public class Spinner : BadGuyShip {
 			}
 			
 			transform.localEulerAngles += rate*Time.deltaTime;
-			rate.z += 5f;
+			rate.z += 4f;
 			yield return null;
 		}
 	}
