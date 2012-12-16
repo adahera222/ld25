@@ -58,37 +58,10 @@ public class UserInput : MonoBehaviour {
 		Debug.Log( left+" "+bottom+"\n"+unitWidth+" "+unitHeight );
 	}
 	
-	void Update() {
-		if( Input.GetKeyDown( KeyCode.Alpha1 ) ) {
-			Select( EnemyTypes.BARRIER );
-		} else if( Input.GetKeyDown( KeyCode.Alpha2 ) ) {
-			Select( EnemyTypes.BURSTER );
-		} else if( Input.GetKeyDown( KeyCode.Alpha3 ) ) {
-			Select( EnemyTypes.BOMBER );
-		} else if( Input.GetKeyDown( KeyCode.Alpha4 ) ) {
-			Select( EnemyTypes.SPINNER );
-		} else if( Input.GetKeyDown( KeyCode.Alpha5 ) ) {
-			Select( EnemyTypes.TRACKER );
-		} else if( Input.GetKeyDown( KeyCode.Alpha6 ) ) {
-			Select( EnemyTypes.MINE );
-		} else if( Input.GetKeyDown( KeyCode.Alpha7 ) ) {
-//			Select( EnemyTypes.BOMBER );
-		} else if( Input.GetKeyDown( KeyCode.Alpha8 ) ) {
-//			Select( EnemyTypes.BOMBER );
-		} else if( Input.GetKeyDown( KeyCode.Alpha9 ) ) {
-//			Select( EnemyTypes.BOMBER );
-		} else if( Input.GetKeyDown( KeyCode.Alpha0 ) ) {
-//			Select( EnemyTypes.BOMBER );
-		}
+	void OnMouseUpAsButton() {
+		print ( "omg "+Input.GetMouseButtonUp(0) );
 		
-		if( Input.GetMouseButtonDown( 0 ) ) {
-//			Debug.Log( "input: "+Input.mousePosition+"\n"+(Input.mousePosition.x/Screen.width)+" "+(Input.mousePosition.y/Screen.height) );
-			
-			UI.MouseInput( Input.mousePosition );
-			
-			if( Input.mousePosition.x / Screen.width > 0.65f ) return;
-			if( Input.mousePosition.y / Screen.height < 0.25f ) return;
-			
+		if( Input.GetMouseButtonUp( 0 ) ) {
 			switch( selection ) {
 			case EnemyTypes.BARRIER:
 				if( numPellets < 5 ) break;
@@ -132,6 +105,34 @@ public class UserInput : MonoBehaviour {
 			}
 			
 			UI.SetNumPellets( numPellets );
+		}
+	}
+	
+	void Update() {
+		if( Input.GetMouseButtonDown( 0 ) ) {
+			UI.MouseInput( Input.mousePosition );
+		}
+		
+		if( Input.GetKeyDown( KeyCode.Alpha1 ) ) {
+			Select( EnemyTypes.BARRIER );
+		} else if( Input.GetKeyDown( KeyCode.Alpha2 ) ) {
+			Select( EnemyTypes.BURSTER );
+		} else if( Input.GetKeyDown( KeyCode.Alpha3 ) ) {
+			Select( EnemyTypes.BOMBER );
+		} else if( Input.GetKeyDown( KeyCode.Alpha4 ) ) {
+			Select( EnemyTypes.SPINNER );
+		} else if( Input.GetKeyDown( KeyCode.Alpha5 ) ) {
+			Select( EnemyTypes.TRACKER );
+		} else if( Input.GetKeyDown( KeyCode.Alpha6 ) ) {
+			Select( EnemyTypes.MINE );
+		} else if( Input.GetKeyDown( KeyCode.Alpha7 ) ) {
+//			Select( EnemyTypes.BOMBER );
+		} else if( Input.GetKeyDown( KeyCode.Alpha8 ) ) {
+//			Select( EnemyTypes.BOMBER );
+		} else if( Input.GetKeyDown( KeyCode.Alpha9 ) ) {
+//			Select( EnemyTypes.BOMBER );
+		} else if( Input.GetKeyDown( KeyCode.Alpha0 ) ) {
+//			Select( EnemyTypes.BOMBER );
 		}
 	}
 	
