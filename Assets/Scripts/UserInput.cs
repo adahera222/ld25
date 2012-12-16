@@ -157,6 +157,7 @@ public class UserInput : MonoBehaviour {
 	}
 	
 	void Spawn( GameObject prefab, Vector3 position, bool particles = false ) {
+		AudioManager.Warp();
 		GameObject g = (GameObject)Instantiate( prefab ) as GameObject;
 		Vector3 viewport = Camera.main.ScreenToViewportPoint( position );
 		Vector3 location = new Vector3( left + viewport.x * unitWidth, bottom + viewport.y * unitHeight );

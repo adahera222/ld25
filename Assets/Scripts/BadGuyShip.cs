@@ -57,6 +57,7 @@ public abstract class BadGuyShip : MonoBehaviour {
 	protected void GracefulExit() {
 		UserInput.AddPellets( refund );
 		UserInput.PlaySpawnParticle( transform.position );
+		AudioManager.Warp();
 		Destroy( gameObject );
 	}
 	
