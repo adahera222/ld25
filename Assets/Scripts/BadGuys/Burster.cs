@@ -17,7 +17,7 @@ public class Burster : BadGuyShip {
 	public override void Initialise( Vector3 position ) {
 		transform.position = position;
 		
-		refund = 2;
+		refund = 1;
 		hp = 10;
 	}
 	

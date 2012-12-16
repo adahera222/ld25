@@ -8,6 +8,7 @@ public enum EnemyTypes {
 	BURSTER,
 	DUMMY,
 	SPINNER,
+	TRACKER,
 }
 
 public abstract class BadGuyShip : MonoBehaviour {

@@ -16,7 +16,8 @@ public class UserInput : MonoBehaviour {
 		barrierPrefab,
 		bursterPrefab,
 		bomberPrefab,
-		spinnerPrefab;
+		spinnerPrefab,
+		trackerPrefab;
 	
 	private EnemyTypes selection = EnemyTypes.BURSTER;
 	
@@ -66,7 +67,7 @@ public class UserInput : MonoBehaviour {
 		} else if( Input.GetKeyDown( KeyCode.Alpha4 ) ) {
 			Select( EnemyTypes.SPINNER );
 		} else if( Input.GetKeyDown( KeyCode.Alpha5 ) ) {
-//			Select( EnemyTypes.BOMBER );
+			Select( EnemyTypes.TRACKER );
 		} else if( Input.GetKeyDown( KeyCode.Alpha6 ) ) {
 //			Select( EnemyTypes.BOMBER );
 		} else if( Input.GetKeyDown( KeyCode.Alpha7 ) ) {
@@ -110,6 +111,12 @@ public class UserInput : MonoBehaviour {
 				if( numPellets < 15 ) break;
 				numPellets -= 15;
 				Spawn( spinnerPrefab, Input.mousePosition, true );
+				break;
+				
+			case EnemyTypes.TRACKER:
+				if( numPellets < 20 ) break;
+				numPellets -= 20;
+				Spawn( trackerPrefab, Input.mousePosition, true );
 				break;
 				
 			default:
