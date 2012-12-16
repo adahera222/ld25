@@ -9,6 +9,7 @@ public class Dummy : BadGuyShip {
 	
 	public override void Initialise( Vector3 position ) {
 		StartCoroutine( Action() );
+		StartCoroutine( Rotate() );
 		hp = 2;
 	}
 	
@@ -28,5 +29,14 @@ public class Dummy : BadGuyShip {
 		}
 		
 		Destroy( gameObject );
+	}
+	
+	IEnumerator Rotate() {
+		transform.localEulerAngles = new Vector3( 0f, 0f, Random.Range( 0f, 360f ) );
+		Vector3 rot = new Vector3( 0f, 0f, 60f );
+		while( true ) {
+			transform.localEulerAngles += rot * Time.deltaTime;
+			yield return null;
+		}
 	}
 }

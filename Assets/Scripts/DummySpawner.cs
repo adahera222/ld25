@@ -3,15 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class DummySpawner : MonoBehaviour {
-	public GameObject badGuyPrefab;
+	public Dummy dummyPrefab;
 	
 	IEnumerator Start() {
 		while( true ) {
 			yield return new WaitForSeconds( 1f );
 			
-			GameObject g = (GameObject)Instantiate( badGuyPrefab ) as GameObject;
-			BadGuyShip b = g.AddComponent<Dummy>();
-			b.Initialise( Vector3.zero );
+			Dummy d = Instantiate( dummyPrefab ) as Dummy;
+			d.Initialise( Vector3.zero );
 		}
 	}
 }

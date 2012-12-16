@@ -5067,6 +5067,8 @@ MonoBehaviour:
   m_Name: 
   badGuyPrefab: {fileID: 100000, guid: 49699e298656ab245a62dd62e37ceaca, type: 2}
   spawnParticle: {fileID: 1720851916}
+  bursterPrefab: {fileID: 100000, guid: e7521d901e07f62459dddea0eaf3d5db, type: 2}
+  bomberPrefab: {fileID: 100000, guid: 0b5e44dbee77e624299da99a49b25071, type: 2}
 --- !u!1 &763896355
 GameObject:
   m_ObjectHideFlags: 0
@@ -9225,7 +9227,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc1a95185b939bf4cbcba5b42cfd7250, type: 3}
   m_Name: 
-  badGuyPrefab: {fileID: 100000, guid: 49699e298656ab245a62dd62e37ceaca, type: 2}
+  dummyPrefab: {fileID: 11400000, guid: 689c78bca3fef474b81f7be9394db84c, type: 2}
 --- !u!1 &1567888699
 GameObject:
   m_ObjectHideFlags: 0

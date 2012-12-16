@@ -11,6 +11,10 @@ public class UserInput : MonoBehaviour {
 	public static float left { private set; get; }
 	public static float bottom { private set; get; }
 	
+	public GameObject
+		bursterPrefab,
+		bomberPrefab;
+	
 	private EnemyTypes selection = EnemyTypes.BURSTER;
 	
 	private int numPellets = 0;
@@ -44,13 +48,15 @@ public class UserInput : MonoBehaviour {
 			case EnemyTypes.BOMBER:
 				if( numPellets < 10 ) break;
 				numPellets -= 10;
-				Spawn<Bomber>( Input.mousePosition );
+//				Spawn<Bomber>( Input.mousePosition );
+				Spawn( bomberPrefab, Input.mousePosition );
 				break;
 				
 			case EnemyTypes.BURSTER:
 				if( numPellets < 5 ) break;
 				numPellets -= 5;
-				Spawn<Burster>( Input.mousePosition, true );
+//				Spawn<Burster>( Input.mousePosition, true );
+				Spawn( bursterPrefab, Input.mousePosition, true );
 				break;
 				
 			default:
@@ -66,6 +72,20 @@ public class UserInput : MonoBehaviour {
 			numPellets += numPellets < maxPellets? 1 : 0;
 			UI.SetNumPellets( numPellets );
 			yield return new WaitForSeconds( 0.2f );
+		}
+	}
+	
+	void Spawn( GameObject prefab, Vector3 position, bool particles = false ) {
+		GameObject g = (GameObject)Instantiate( prefab ) as GameObject;
+		Vector3 viewport = Camera.main.ScreenToViewportPoint( position );
+		Vector3 location = new Vector3( left + viewport.x * unitWidth, bottom + viewport.y * unitHeight );
+		
+		BadGuyShip b = g.GetComponent<BadGuyShip>();
+		b.Initialise( location );
+		
+		if( particles ) {
+			spawnParticle.transform.position = location;
+			spawnParticle.Play( true );
 		}
 	}
 	
