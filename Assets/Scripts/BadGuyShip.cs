@@ -47,6 +47,7 @@ public abstract class BadGuyShip : MonoBehaviour {
 	protected virtual void OnCollisionEnter( Collision c ) {
 		if( --hp <= 0 ) {
 			Destroy( gameObject );
+			Explosion.Play( transform.position );
 			GoodGuyShip.AddScore( scoreValue );
 		}
 	}
