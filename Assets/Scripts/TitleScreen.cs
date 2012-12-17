@@ -5,11 +5,12 @@ using System.Collections.Generic;
 delegate void Action();
 
 public class TitleScreen : MonoBehaviour {
-	public GameObject play, instructions, fullInstructions;
+	public GameObject play, instructions, fullInstructions, music;
 	
 	void Start() {
 		play.AddComponent<TitleButton>().action = OnPlay;
 		instructions.AddComponent<TitleButton>().action = OnHelp;
+		music.AddComponent<TitleButton>().action = OnMusic;
 	}
 	
 	void OnPlay() {
@@ -18,6 +19,10 @@ public class TitleScreen : MonoBehaviour {
 	
 	void OnHelp() {
 		fullInstructions.renderer.enabled = !fullInstructions.renderer.enabled;
+	}
+	
+	void OnMusic() {
+		Application.OpenURL( "https://soundcloud.com/twc-3" );
 	}
 }
 
