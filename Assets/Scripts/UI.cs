@@ -11,6 +11,7 @@ public class UI : MonoBehaviour {
 	public TextMesh selection;
 	public TextMesh shield;
 	public Renderer insertCoin;
+	public GameObject restart, title;
 	
 	public UIPelletGroup[] groups;
 	
@@ -20,9 +21,22 @@ public class UI : MonoBehaviour {
 		ins = this;
 		tiles = GetComponentsInChildren<UITile>( false );
 		insertCoin.enabled = false;
+		
+		restart.AddComponent<TitleButton>().action = () => {
+			Application.LoadLevel( Application.loadedLevel );
+		};
+		
+		title.AddComponent<TitleButton>().action = () => {
+			Application.LoadLevel( 0 );
+		};
+		
+		restart.SetActive( false );
+		title.SetActive( false );
 	}
 	
 	public static void GameOver() {
+		ins.restart.SetActive( true );
+		ins.title.SetActive( true );
 		ins.StartCoroutine( ins._GameOver() );
 	}
 	
