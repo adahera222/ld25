@@ -15,6 +15,8 @@ public class GoodGuyShip : MonoBehaviour {
 	private int lives = 3;
 	private int score = 0;
 	
+	private bool deathflag = false;
+	
 	void Awake() {
 		ins = this;
 	}
@@ -47,7 +49,7 @@ public class GoodGuyShip : MonoBehaviour {
 			t.renderer.enabled = false;
 		}
 		
-		if( lives == 0 ) {
+		if( lives <= 0 ) {
 			gameObject.SetActive( false );
 			UI.GameOver();
 			return;
@@ -57,6 +59,7 @@ public class GoodGuyShip : MonoBehaviour {
 	}
 	
 	void res() {
+		deathflag = false;
 		AudioManager.ToggleShotLoop( true );
 		collider.enabled = true;
 		transform.position = new Vector3( Centre, -5f );
@@ -68,10 +71,10 @@ public class GoodGuyShip : MonoBehaviour {
 		UI.SetNumLives( --lives );
 		UI.SetShield( hp = maxhp, maxhp );
 		
-		StartCoroutine( Fire() );
-		StartCoroutine( FireFan() );
-		StartCoroutine( FireWideFan() );
-		StartCoroutine( ScoreTick() );
+//		StartCoroutine( Fire() );
+//		StartCoroutine( FireFan() );
+//		StartCoroutine( FireWideFan() );
+//		StartCoroutine( ScoreTick() );
 	}
 	
 	#region attacks
@@ -175,7 +178,9 @@ public class GoodGuyShip : MonoBehaviour {
 	void OnCollisionEnter( Collision c ) {
 		UI.SetShield( --hp, maxhp );
 		
-		if( hp <= 0 ) {
+		if( hp <= 0 && !deathflag ) {
+			deathflag = true;
+			
 			AudioManager.Explosion();
 			Explosion.Play( transform.position );
 			Reinitialise();
